@@ -62,6 +62,11 @@
  *    // your code here
  * }
  */
+const yelling = Array => {
+  return Array.map(element => {
+    return element.toUpperCase()
+  })
+}
 
 // ...
 
@@ -72,6 +77,12 @@
  * the numbers multiplied by 2
  */
 
+const doubleTrouble = arrayOfNumbers => {
+  return arrayOfNumbers.map(value => {
+    return value * 2
+  })
+}
+
 // ...
 
 /*
@@ -80,6 +91,14 @@
  * suffixed with " is at index X" where X is the index of the element
  */
 
+const stringyIndexes = array => {
+  let indexCount = -1
+  return array.map(arr => {
+    indexCount += 1
+    return arr + ' is at index ' + indexCount
+  })
+}
+
 // ...
 
 /*
@@ -87,12 +106,22 @@
  * numbers and returns only the elements that are even
  */
 
+const onlyTheEvenSurvive = arrayOfNumbers => {
+  return arrayOfNumbers.filter(value => {
+    return value % 2 === 0
+  })
+}
+
 // ...
 
 /*
  * Define a function onlyTheEvenIndexedSurvive that accepts an array of
  * numbers and returns only the elements at indexes that are even
  */
+
+const onlyTheEvenIndexedSurvive = arrayOfNumbers => {
+  return arrayOfNumbers.filter((value, index) => !(index % 2))
+}
 
 // ...
 
@@ -110,6 +139,16 @@
  * }
  */
 
+const bestMoviesOfTheYear = (arrayOfMovies, year) => {
+  return arrayOfMovies
+    .filter(movie => {
+      return movie.score > 90 && movie.year === year
+    })
+    .map(movie => {
+      return movie.name
+    })
+}
+
 // ...
 
 /*
@@ -117,6 +156,16 @@
  * numbers and returns true if every element of the array is
  * odd.
  */
+const everyoneIsOdd = arrayOfNumbers => {
+  const odd = arrayOfNumbers.filter(value => {
+    return value % 2 !== 0
+  })
+  if (arrayOfNumbers.length === odd.length) {
+    return true
+  } else {
+    return false
+  }
+}
 
 // ...
 
@@ -126,13 +175,24 @@
  * `needle` inside
  */
 
+const findTheNeedle = arrayOfStrings => {
+  const needle = arrayOfStrings.filter(item => {
+    return item.toLowerCase().includes('needle')
+  })
+  return needle[0]
+}
+
 // ...
 
 /*
  * Define a function findTheNeedleIndex that accepts an array of
  * strings and returns the index of the string that contains
  *  the word `needle` inside
+ *
  */
+const findTheNeedleIndex = arrayOfStrings => {
+  return arrayOfStrings.findIndex(value => value.includes('needle'))
+}
 
 // ...
 
@@ -142,6 +202,18 @@
  * four characters long
  */
 
+//
+
+const someoneToLove = array => {
+  let inLove = false
+
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].length === 4) {
+      inLove = true
+    }
+  }
+  return inLove
+}
 // ...
 
 /*
@@ -186,10 +258,13 @@
 /* eslint-disable no-undef */
 
 import test from 'ava'
+import { networkInterfaces } from 'os'
 
 const ensureDefined = (t, method) => {
   if (eval(`typeof ${method}`) !== 'function') {
-    t.fail(`\n\n\n\n\n⚡️⚡️⚡️⚡️⚡️ The next step is to define the function ${method} ⚡️⚡️⚡️⚡️⚡️\n\n\n`)
+    t.fail(
+      `\n\n\n\n\n⚡️⚡️⚡️⚡️⚡️ The next step is to define the function ${method} ⚡️⚡️⚡️⚡️⚡️\n\n\n`
+    )
   }
 }
 
